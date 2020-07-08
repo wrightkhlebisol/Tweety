@@ -4,7 +4,17 @@
 @section('content')
 
 <header class="mb-6 relative">
-    <img src="/images/default-profile-banner.jpg" alt="">
+    <div class="relative">
+        <img src="/images/default-profile-banner.jpg" alt="" class="mb-2">
+
+        <img 
+            src="{{ $user->avatar }}" 
+            alt="" 
+            width="150" 
+            class="rounded-full mr-2 absolute bottom-0 transform -translate-x-1/2 translate-y-1/2"
+            style="left: 50%"
+        >
+    </div>
 
     <div class="flex justify-between items-center mb-4">
         <div>
@@ -30,11 +40,7 @@
     Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur ex iure nesciunt explicabo incidunt, voluptatibus dicta voluptatum perspiciatis aut unde cum ratione impedit error sed laudantium fugiat harum temporibus. Labore?xplicabo incidunt, volu unde cum psum dolor sit amet consectetur
     </p>
 
-    <img 
-        src="{{ $user->avatar }}" alt="" 
-        style="width: 150px; left: calc(50% - 75px); top: 138px;" 
-        class="rounded-full mr-2 top-0 absolute"
-    >
+    
 
 
 </header>

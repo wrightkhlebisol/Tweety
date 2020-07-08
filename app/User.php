@@ -15,18 +15,14 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $fillable = [
-        'name', 'email', 'password',
-    ];
+    protected $fillable = ['name', 'email', 'password'];
 
     /**
      * The attributes that should be hidden for arrays.
      *
      * @var array
      */
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
+    protected $hidden = ['password', 'remember_token'];
 
     /**
      * The attributes that should be cast to native types.
@@ -37,12 +33,12 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function timeline(){
-
+    public function timeline()
+    {
         // Include all of the user's tweets
         // as well as the tweets for everyone
         // they follow ... in descending order by date
-        
+
         $friends = $this->follows->pluck('id');
 
         return Tweet::whereIn('user_id', $friends)
@@ -51,15 +47,22 @@ class User extends Authenticatable
             ->get();
     }
 
-    public function tweets(){
+    public function tweets()
+    {
         return $this->hasMany(Tweet::class);
     }
 
-    public function getAvatarAttribute(){
-        return "https://i.pravatar.cc/40?u=" . $this->email;
+    public function getAvatarAttribute()
+    {
+        return 'https://i.pravatar.cc/40?u=' . $this->email;
     }
 
-    // public function getRouteKeyName(){
+    // public function getRouteKeyName()
+    // {
     //     return 'name';
     // }
+    public function profilePath()
+    {
+        return route('profile', $this->name);
+    }
 }
