@@ -24,17 +24,17 @@
         </div>
 
         <div class="flex">
-            @if (auth()->user()->is($user))
+            @if (current_user()->is($user))
                 <a href="#" class="rounded-full text-xs py-2 px-4 border border-gray-300 text-black mr-2">Edit Profile</a>
                 
             @endif
             
 
-            @unless (auth()->user()->is($user))
+            @unless (current_user()->is($user))
                 <form method="POST" action="/profiles/{{$user->name}}/follow">
                     @csrf
                     <button type="submit" href="#" class="bg-blue-500 rounded-full shadow text-xs py-2 px-4 text-white">
-                        {{ auth()->user()->following($user) ? 'Unfollow Me' : 'Follow Me'}}
+                        {{ current_user()->following($user) ? 'Unfollow Me' : 'Follow Me'}}
                     </button>
                 </form>
                 
