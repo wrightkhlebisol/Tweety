@@ -24,10 +24,10 @@
         </div>
 
         <div class="flex">
-            @if (current_user()->is($user))
+            @can('edit', $user)
                 <a href="{{ $user->profilePath('edit') }}" class="rounded-full text-xs py-2 px-4 border border-gray-300 text-black mr-2">Edit Profile</a>
                 
-            @endif
+            @endcan
             
 
             @unless (current_user()->is($user))
