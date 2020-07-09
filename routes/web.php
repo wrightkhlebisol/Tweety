@@ -22,14 +22,16 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/tweets', 'TweetController@store');
 
-    Route::post('/profiles/{user:name}/follow', 'FollowsController@store');
+    Route::post('/profiles/{user:username}/follow', 'FollowsController@store');
 
     Route::get(
-        '/profiles/{user:name}/edit',
+        '/profiles/{user:username}/edit',
         'ProfilesController@edit'
     )->middleware('can:edit,user');
 });
 
-Route::get('/profiles/{user:name}', 'ProfilesController@show')->name('profile');
+Route::get('/profiles/{user:username}', 'ProfilesController@show')->name(
+    'profile'
+);
 
 Auth::routes();

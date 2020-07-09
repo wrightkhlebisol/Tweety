@@ -15,20 +15,23 @@ class TweetController extends Controller
      */
     public function index()
     {
-        return view('tweets.index', ['tweets' => auth()->user()->timeline()]);
+        return view('tweets.index', [
+            'tweets' => auth()
+                ->user()
+                ->timeline(),
+        ]);
     }
-
 
     public function store(Request $request)
     {
-        $attributes  =   $request->validate([
-            'body' => 'required|max:255'
+        $attributes = $request->validate([
+            'body' => 'required|max:255',
         ]);
         Tweet::create([
-            'user_id'   => auth()->id(),
-            'body'      => $attributes['body']
+            'user_id' => auth()->id(),
+            'body' => $attributes['body'],
         ]);
 
-        return redirect('/home');
+        return redirect('/tweets');
     }
 }
