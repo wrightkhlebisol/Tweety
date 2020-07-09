@@ -24,8 +24,10 @@ class ProfilesController extends Controller
         return view('profiles.edit', ['user' => $user]);
     }
 
-    public function update(Request $request, User $user)
+    public function update(User $user)
     {
+        // dd(request('avatar'));
+
         $attributes = request()->validate([
             'username' => [
                 'string',
@@ -34,6 +36,7 @@ class ProfilesController extends Controller
                 'alpha_dash',
                 Rule::unique('users')->ignore($user),
             ],
+            'avatar' => ['required'],
             'name' => [
                 'string',
                 'required',
@@ -54,6 +57,8 @@ class ProfilesController extends Controller
                 'confirmed',
             ],
         ]);
+
+        $attributes['avatar'] = request('avatar')->store('avatars');
 
         $user->update($attributes);
 
