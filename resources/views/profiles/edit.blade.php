@@ -18,12 +18,18 @@
 
     <div class="mb-6">
         <label for="avatar" class="block mb-2 uppercase font-bold text-xs text-gray-700">avatar</label>
+        
+        <div class="flex">
 
-        <input type="file" class="border border-gray-400 p-2 w-full" name="avatar" id="avatar">
+            <input type="file" class="border border-gray-400 p-2 w-full" name="avatar" id="avatar">
+
+            <img src="{{ $user->avatar }}" width="40" alt="Your avatar">
+        </div>
 
         @error('avatar')
         <p class="text-red-500 text xs mt-2">{{ $message }}</p>
         @enderror
+
     </div>
 
     <div class="mb-6">
