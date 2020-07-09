@@ -22,4 +22,9 @@ class ProfilesController extends Controller
 
         return view('profiles.edit', ['user' => $user]);
     }
+
+    public function update(Request $request, User $user)
+    {
+        request()->validate(['username', 'name', 'email', 'password']);
+    }
 }
