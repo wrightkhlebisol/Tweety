@@ -9,7 +9,15 @@ use App\Tweet;
 class ProfilesController extends Controller
 {
     //
-    public function show(User $user){
+    public function show(User $user)
+    {
         return view('profiles.show', ['user' => $user]);
+    }
+
+    public function edit(User $user)
+    {
+        abort_if($user->isNot(current_user()), 404);
+
+        return view('profiles.edit', ['user' => $user]);
     }
 }
