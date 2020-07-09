@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use App\Tweet;
 
 class ProfilesController extends Controller
@@ -25,6 +26,37 @@ class ProfilesController extends Controller
 
     public function update(Request $request, User $user)
     {
-        request()->validate(['username', 'name', 'email', 'password']);
+        $attributes = request()->validate([
+            'username' => [
+                'string',
+                'required',
+                'max:255',
+                'alpha_dash',
+                Rule::unique('users')->ignore($user),
+            ],
+            'name' => [
+                'string',
+                'required',
+                'max:255'
+            ],
+            'email' => [
+                'string',
+                'required',
+                'email',
+                'max:255',
+                Rule::unique('users')->ignore($user),
+            ],
+            'password' => [
+                'required',
+                'string',
+                'min:8',
+                'max:255',
+                'confirmed',
+            ],
+        ]);
+
+        $user->update($attributes);
+
+        return redirect($user->profilePath());
     }
 }
