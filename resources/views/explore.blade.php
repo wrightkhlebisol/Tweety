@@ -13,7 +13,7 @@
                 <h4 class="font-bold"> {{ '@' . $user->username }} </h4>
             </div>
 
-            {{$users->links()}}
         </a>
     @endforeach
+    {{$users->links()}}
 @stop
