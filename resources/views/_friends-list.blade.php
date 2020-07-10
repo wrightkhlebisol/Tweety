@@ -4,12 +4,12 @@
     
     @auth()
         @forelse(auth()->user()->follows as $user)
-        <a href="{{route('profile', $user->name )}}">
+        <a href="{{route('profile', $user->username )}}">
             <li class="mb-4">
                 <div class="flex items-center text-sm">
-                    <img src="{{ $user->avatar }}" alt="" class="rounded-full mr-2">
+                    <img src="{{ $user->avatar }}" alt="" class="rounded-full mr-2 w-10">
 
-                    {{ $user->name }}
+                    {{ $user->username }}
                 </div>
             </li>
         </a>
