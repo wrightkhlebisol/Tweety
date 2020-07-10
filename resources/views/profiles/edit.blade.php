@@ -74,7 +74,13 @@
     </div>
 
     <div class="mb-6">
-        <button type="submit" class="bg-blue-400 text-white rounded py-3 px-4 hover:bg-blue-500 mr-4" required>Submit</button>
+        <button type="submit" 
+            class="bg-blue-400 text-white rounded py-3 px-4 hover:bg-blue-500 mr-4" required
+        >
+            Submit
+        </button>
+
+        <a href="{{ $user->profilePath() }}" class="hover:underline text-red-500">Cancel</a>
     </div>
 
 
