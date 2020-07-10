@@ -7,8 +7,7 @@ use Illuminate\Http\Request;
 
 class ExploreController extends Controller
 {
-    //
-    public function index()
+    public function __invoke()
     {
         $users = User::paginate(50);
 
