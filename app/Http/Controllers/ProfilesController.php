@@ -12,7 +12,10 @@ class ProfilesController extends Controller
     //
     public function show(User $user)
     {
-        return view('profiles.show', ['user' => $user]);
+        return view('profiles.show', [
+            'user' => $user,
+            'tweets' => $user->tweets()->paginate(3),
+        ]);
     }
 
     public function edit(User $user)
@@ -37,11 +40,7 @@ class ProfilesController extends Controller
                 Rule::unique('users')->ignore($user),
             ],
             'avatar' => ['file'],
-            'name' => [
-                'string',
-                'required',
-                'max:255'
-            ],
+            'name' => ['string', 'required', 'max:255'],
             'email' => [
                 'string',
                 'required',
@@ -58,7 +57,9 @@ class ProfilesController extends Controller
             ],
         ]);
 
-        if (request('avatar')) $attributes['avatar'] = request('avatar')->store('avatars');
+        if (request('avatar')) {
+            $attributes['avatar'] = request('avatar')->store('avatars');
+        }
 
         $user->update($attributes);
 
