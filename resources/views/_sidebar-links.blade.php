@@ -5,7 +5,7 @@
     <li>
         <a href="/explore" class="font-bold text-lg mb-4 block">Explore</a>
     </li>
-    <li>
+    {{--  <li>
         <a href="#" class="font-bold text-lg mb-4 block">Notifications</a>
     </li>
     <li>
@@ -16,21 +16,13 @@
     </li>
     <li>
         <a href="#" class="font-bold text-lg mb-4 block">Lists</a>
-    </li>
+    </li>  --}}
     @auth
     <li>
         <a href="{{ route('profile', auth()->user()) }}" class="font-bold text-lg mb-4 block">Profile</a>
     </li>
 
-    @else
-    <li>
-        <a href="/tweets" class="font-bold text-lg mb-4 block">Profile</a>
-    </li>
-    @endauth
-    <li>
-        <a href="#" class="font-bold text-lg mb-4 block">More</a>
-    </li>
-    <li>
+     <li>
         <div class="mb-6">
             <form method="post" action="/logout">
                 @csrf
@@ -38,4 +30,15 @@
             </form>
         </div>
     </li>
+
+    @else
+    <li>
+        <a href="/tweets" class="font-bold text-lg mb-4 block">Profile</a>
+    </li>
+    @endauth
+    {{--  <li>
+        <a href="#" class="font-bold text-lg mb-4 block">More</a>
+    </li>  --}}
+
+   
 </ul>
